@@ -377,7 +377,7 @@ def main():
             sys.exit(1)
 
         # check DNS connectivity
-        if not cls_teamcymru._check_dns_connectivity():
+        if not cls_teamcymru.check_dns_connectivity():
            script_logger.error("The program is unable to make DNS queries to Team Cymru server."
                                "Kindly make sure that DNS service is operating correctly on the PC."
                                "Quitting...")
