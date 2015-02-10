@@ -1,0 +1,17 @@
+#!/bin/bash
+APP_NAME="NSRL_REST_APP"
+DJANGO_DIR=/home/joshi/NSRL/nsrl_REST
+SOCK_FILE=/home/joshi/NSRL/nsrl_REST/run/gunicorn.sock
+#user=apache
+#group=apache
+NUM_WORKERS=3
+DJANGO_SETTINGS_MODULE=nsrl_REST.settings
+DJANGO_WSGI_MODULE=nsrl_REST.wsgi
+
+#setup environment
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DANGO_DIR:$PYTHONPATH
+#start Django-Unicorn
+exec /usr/bin/gunicorn ${DJANGO_WSGI_MODULE}:application --name $APP_NAME --workers $NUM_WORKERS --timeout 300 --bind=unix:$SOCK_FILE  --log-level=debug
+#--log-file=- 
+
